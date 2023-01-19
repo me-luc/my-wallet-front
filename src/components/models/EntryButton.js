@@ -1,12 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function EntryButton({ Icon, title }) {
+export default function EntryButton({ Icon, title, link }) {
+	const navigate = useNavigate();
+
 	return (
-		<StyledButton>
+		<StyledButton onClick={goToLinkPage}>
 			<Icon className="icon" />
 			<Title>{title}</Title>
 		</StyledButton>
 	);
+
+	function goToLinkPage() {
+		navigate(link);
+	}
 }
 
 const StyledButton = styled.button`
@@ -42,5 +49,5 @@ const Title = styled.h3`
 	color: #ffffff;
 
 	text-align: left;
-	word-spacing: 50px;
+	word-spacing: 70px;
 `;
