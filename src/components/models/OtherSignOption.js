@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export default function OtherSignOption({ text, link }) {
 	const navigate = useNavigate();
-	return <StyledP onClick={goTo}>{text}</StyledP>;
+	return <StyledP onClick={goToLinkPage}>{text}</StyledP>;
 
-	function goTo() {
+	function goToLinkPage() {
 		navigate(link);
 	}
 }
