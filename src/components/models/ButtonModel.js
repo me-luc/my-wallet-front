@@ -18,4 +18,5 @@ const StyledButton = styled.button`
 	line-height: 23px;
 
 	color: #ffffff;
+	margin: 7px 0;
 `;
