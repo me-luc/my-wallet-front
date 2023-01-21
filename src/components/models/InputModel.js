@@ -1,7 +1,26 @@
 import styled from "styled-components";
 
-export default function InputModel({ placeholder }) {
-	return <StyledInput placeholder={placeholder} />;
+export default function InputModel({
+	placeholder,
+	type,
+	required,
+	value,
+	setValue,
+}) {
+	return (
+		<StyledInput
+			value={value}
+			onChange={updateValue}
+			placeholder={placeholder}
+			type={type}
+			required={required}
+		/>
+	);
+
+	function updateValue(e) {
+		console.log("its working!");
+		setValue(e.target.value);
+	}
 }
 
 const StyledInput = styled.input`
@@ -21,6 +40,10 @@ const StyledInput = styled.input`
 	line-height: 23px;
 
 	color: #000000;
+
+	[type="password"] {
+		font-size: 90px;
+	}
 
 	::placeholder {
 		font-family: "Raleway";
