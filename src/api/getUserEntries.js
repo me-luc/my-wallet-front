@@ -1,12 +1,11 @@
 import axios from "axios";
 import { BASE_URI } from "./URI";
 
-export async function signIn(email, password) {
+export default async function getUserEntries() {
+	const token = localStorage.getItem("userToken");
+
 	return await axios
-		.post(`${BASE_URI}/sign-in`, {
-			email,
-			password,
-		})
+		.get(`${BASE_URI}/entries`, { headers: { token } })
 		.then((response) => {
 			return { data: response.data, error: false };
 		})

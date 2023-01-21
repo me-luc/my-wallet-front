@@ -6,11 +6,13 @@ export default function InputModel({
 	required,
 	value,
 	setValue,
+	clearError,
 }) {
 	return (
 		<StyledInput
 			value={value}
 			onChange={updateValue}
+			clearError={clearError}
 			placeholder={placeholder}
 			type={type}
 			required={required}
@@ -20,6 +22,7 @@ export default function InputModel({
 	function updateValue(e) {
 		console.log("its working!");
 		setValue(e.target.value);
+		clearError();
 	}
 }
 

@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import Authenticate from "../auth/Authenticate";
 import { InputModel, ButtonModel, PageTitle } from "../components/index";
 import { PageModel } from "../styles/PageModel";
 
 export default function NewIncomePage() {
 	return (
 		<Page>
+			<Authenticate />
 			<PageTitle style={titleStyle} text="Nova entrada" />
 			<InputModel placeholder="Valor" />
 			<InputModel placeholder="Descrição" />

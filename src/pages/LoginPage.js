@@ -8,10 +8,14 @@ import {
 } from "../components/index";
 import { useState } from "react";
 import { signIn } from "../api/signIn";
+import { useNavigate } from "react-router-dom";
+import AuthErrorMessage from "../components/models/AuthErrorMessage";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const navigate = useNavigate();
 
 	return (
 		<Page>
@@ -19,17 +23,21 @@ export default function LoginPage() {
 				<AppTitle />
 				<InputModel
 					value={email}
+					clearError={clearError}
 					setValue={setEmail}
 					placeholder="E-mail"
+					type="e-mail"
 					required
 				/>
 				<InputModel
 					value={password}
 					setValue={setPassword}
+					clearError={clearError}
 					placeholder="Senha"
 					type="password"
 					required
 				/>
+				<AuthErrorMessage text={error} />
 				<ButtonModel type="submit" text="Entrar" />
 			</form>
 
@@ -40,9 +48,19 @@ export default function LoginPage() {
 		</Page>
 	);
 
-	function handleClick(e) {
+	async function handleClick(e) {
 		e.preventDefault();
-		signIn(email, password);
+		const response = await signIn(email, password);
+		if (response.error) {
+			setError(response.data);
+		} else {
+			localStorage.setItem("userToken", response.data);
+			navigate("/home");
+		}
+	}
+
+	function clearError() {
+		setError("");
 	}
 }
 

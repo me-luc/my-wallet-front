@@ -5,17 +5,40 @@ import {
 	AiOutlinePlusCircle as PlusIcon,
 	AiOutlineMinusCircle as MinusIcon,
 } from "react-icons/ai";
-import { EntryButton, History, PageTitle } from "../components/index";
+import { EntryButton, Entry, PageTitle } from "../components/index";
+import Authenticate from "../auth/Authenticate";
+import { useEffect, useState } from "react";
+import LoadingPage from "./LoadingPage";
+import getUserEntries from "../api/getUserEntries";
 
 export default function HomePage({ name }) {
+	const [entries, setEntries] = useState(null);
+
+	useEffect(() => {
+		async function getData() {
+			const response = await getUserEntries();
+			if (response.error) {
+			} else {
+				setEntries(response.data);
+				console.log(entries);
+			}
+		}
+
+		getData();
+	}, []);
+
+	if (!entries) {
+		return <LoadingPage />;
+	}
 	return (
 		<Page>
+			<Authenticate />
 			<TopSection>
 				<PageTitle text={`Olá, ${name}`} />
 				<LogoutIcon className="icon" />
 			</TopSection>
 
-			<History />
+			<Entry entries={entries} />
 
 			<Options>
 				<EntryButton title="Nova entrada" Icon={PlusIcon} />
