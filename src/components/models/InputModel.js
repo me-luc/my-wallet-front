@@ -22,7 +22,7 @@ export default function InputModel({
 	function updateValue(e) {
 		console.log("its working!");
 		setValue(e.target.value);
-		clearError();
+		if (clearError) clearError();
 	}
 }
 

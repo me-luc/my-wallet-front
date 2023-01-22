@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { AppTitle } from "../components";
 import { PageModel } from "../styles/PageModel";
 import { MutatingDots } from "react-loader-spinner";
+import Authenticate from "../auth/Authenticate";
 
 export default function LoadingPage() {
 	return (
 		<Page>
+			<Authenticate />
 			<AppTitle />
 			<MutatingDots
 				height="100"

@@ -10,20 +10,32 @@ import Authenticate from "../auth/Authenticate";
 import { useEffect, useState } from "react";
 import LoadingPage from "./LoadingPage";
 import getUserEntries from "../api/getUserEntries";
+import getUserData from "../api/getUserData";
+import signOut from "../api/singOut";
+import { useNavigate } from "react-router-dom";
 
-export default function HomePage({ name }) {
+export default function HomePage() {
 	const [entries, setEntries] = useState(null);
+	const [name, setName] = useState(localStorage.getItem("name"));
+	const navigate = useNavigate();
 
 	useEffect(() => {
+		async function getUserName() {
+			const response = await getUserData();
+			if (!response.error) {
+				setName(response.data.name);
+				localStorage.setItem("name", response.data.name);
+			}
+		}
 		async function getData() {
 			const response = await getUserEntries();
-			if (response.error) {
-			} else {
+			if (!response.error) {
 				setEntries(response.data);
 				console.log(entries);
 			}
 		}
 
+		if (name === null || !name) getUserName();
 		getData();
 	}, []);
 
@@ -35,7 +47,7 @@ export default function HomePage({ name }) {
 			<Authenticate />
 			<TopSection>
 				<PageTitle text={`Olá, ${name}`} />
-				<LogoutIcon className="icon" />
+				<LogoutIcon onClick={handleSignOutClick} className="icon" />
 			</TopSection>
 
 			<Entry entries={entries} />
@@ -46,12 +58,19 @@ export default function HomePage({ name }) {
 			</Options>
 		</Page>
 	);
+
+	async function handleSignOutClick() {
+		const response = await signOut();
+		console.log(response);
+		navigate("/");
+	}
 }
 
 const Page = styled(PageModel)`
 	.icon {
 		font-size: 30px;
 		color: #ffffff;
+		cursor: pointer;
 	}
 `;
 
