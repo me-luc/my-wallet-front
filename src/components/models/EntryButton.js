@@ -49,5 +49,5 @@ const Title = styled.h3`
 	color: #ffffff;
 
 	text-align: left;
-	word-spacing: 70px;
+	word-spacing: calc(100vw);
 `;

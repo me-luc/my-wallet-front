@@ -1,24 +1,24 @@
 import Joi from "joi";
 
-export const userSchema = Joi.object({
+export const signUpSchema = Joi.object({
 	name: Joi.string().min(1).required().messages({
-		"string.base": `"name" should be a type of 'text'`,
-		"string.empty": `"name" cannot be an empty field`,
-		"string.min": `"name" should have a minimum length of 1`,
-		"any.required": `"name" is a required field`,
+		"string.base": `Name should be a type of text`,
+		"string.empty": `Name cannot be an empty field`,
+		"string.min": `Name should have a minimum length of 1`,
+		"any.required": `Name is a required field`,
 	}),
 	email: Joi.string().email().required().messages({
-		"string.base": `"email" should be a type of 'text'`,
-		"string.empty": `"email" cannot be an empty field`,
-		"string.min": `"email" should have a minimum length of 1`,
-		"any.required": `"email" is a required field`,
+		"string.base": `E-mail should be a type of text`,
+		"string.empty": `E-mail cannot be an empty field`,
+		"string.min": `E-mail should have a minimum length of 1`,
+		"any.required": `E-mail is a required field`,
 	}),
 	password: Joi.string().min(8).max(16).required().messages({
-		"string.base": `"password" should be a type of 'text'`,
-		"string.empty": `"password" cannot be an empty field`,
-		"string.min": `"password" should have a minimum length of 8`,
-		"string.max": `"password" should have a maximum length of 18`,
-		"any.required": `"password" is a required field`,
+		"string.base": `Password should be a type of text`,
+		"string.empty": `Password cannot be an empty field`,
+		"string.min": `Password should have a minimum length of 8`,
+		"string.max": `Password should have a maximum length of 18`,
+		"any.required": `Password is a required field`,
 	}),
 	confirmPassword: Joi.string()
 		.valid(Joi.ref("password"))
@@ -27,4 +27,20 @@ export const userSchema = Joi.object({
 		.messages({
 			"any.only": "Passwords doesn't match",
 		}),
+});
+
+export const signInSchema = Joi.object({
+	email: Joi.string().email().required().messages({
+		"string.base": `Email should be a type of text`,
+		"string.empty": `Email cannot be an empty field`,
+		"string.min": `Email should have a minimum length of 1`,
+		"any.required": `Email is a required field`,
+	}),
+	password: Joi.string().min(8).max(16).required().messages({
+		"string.base": `Password should be a type of text`,
+		"string.empty": `Password cannot be an empty field`,
+		"string.min": `Password should have a minimum length of 8`,
+		"string.max": `Password should have a maximum length of 18`,
+		"any.required": `Password is a required field`,
+	}),
 });

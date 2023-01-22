@@ -46,7 +46,7 @@ export default function HomePage() {
 	return (
 		<Page>
 			<Authenticate />
-			<ResponseMessage />
+			<ResponseMessage show={false} />
 			<TopSection>
 				<PageTitle text={`Olá, ${name}`} />
 				<LogoutIcon onClick={handleSignOutClick} className="icon" />
