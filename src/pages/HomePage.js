@@ -13,6 +13,7 @@ import getUserEntries from "../api/getUserEntries";
 import getUserData from "../api/getUserData";
 import signOut from "../api/singOut";
 import { useNavigate } from "react-router-dom";
+import ResponseMessage from "../components/models/ResponseMessage";
 
 export default function HomePage() {
 	const [entries, setEntries] = useState(null);
@@ -45,6 +46,7 @@ export default function HomePage() {
 	return (
 		<Page>
 			<Authenticate />
+			<ResponseMessage />
 			<TopSection>
 				<PageTitle text={`Olá, ${name}`} />
 				<LogoutIcon onClick={handleSignOutClick} className="icon" />
@@ -53,8 +55,16 @@ export default function HomePage() {
 			<Entry entries={entries} />
 
 			<Options>
-				<EntryButton title="Nova entrada" Icon={PlusIcon} />
-				<EntryButton title="Nova saída" Icon={MinusIcon} />
+				<EntryButton
+					title="Nova entrada"
+					Icon={PlusIcon}
+					link="/nova-entrada"
+				/>
+				<EntryButton
+					title="Nova saída"
+					Icon={MinusIcon}
+					link="/nova-saida"
+				/>
 			</Options>
 		</Page>
 	);

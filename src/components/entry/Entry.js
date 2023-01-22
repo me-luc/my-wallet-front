@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getDateDdMm } from "../../utils/Date";
 import EntryItem from "./EntryItem";
 
 export default function Entry({ entries }) {
@@ -9,7 +10,8 @@ export default function Entry({ entries }) {
 					(item) =>
 						item && (
 							<EntryItem
-								date={item.date}
+								key={item._id}
+								date={getDateDdMm(item.date)}
 								description={item.description}
 								price={item.price}
 								type={item.type}
