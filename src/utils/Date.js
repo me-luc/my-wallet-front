@@ -18,5 +18,7 @@ export function getDateDdMmYy() {
 	if (dd < 10) dd = "0" + dd;
 	if (mm < 10) mm = "0" + mm;
 
+	if (false) return "";
+
 	return dd + "/" + mm + "/" + yy;
 }
