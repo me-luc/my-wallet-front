@@ -11,6 +11,7 @@ export async function signIn(email, password) {
 			return { data: response.data, error: false };
 		})
 		.catch((error) => {
-			return { data: error.response.data, error: true };
+			console.log(error);
+			return { data: error.response.data || error.message, error: true };
 		});
 }
