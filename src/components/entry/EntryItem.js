@@ -5,10 +5,12 @@ export default function EntryItem({ date, description: title, price, type }) {
 		<Item>
 			<LeftBox>
 				<Date>{date}</Date>
-				<Title>{title}</Title>
+				<Title data-test="registry-name">{title}</Title>
 			</LeftBox>
 
-			<Price type={type}>{price}</Price>
+			<Price data-test="registry-amount" type={type}>
+				{price}
+			</Price>
 		</Item>
 	);
 }

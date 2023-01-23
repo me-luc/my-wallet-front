@@ -17,16 +17,22 @@ export default function NewOutcomePage() {
 			<PageTitle style={titleStyle} text="Nova saída" />
 			<form onSubmit={handleClick}>
 				<InputModel
+					data-test="registry-amount-input"
 					value={value}
 					setValue={setValue}
 					placeholder="Valor"
 				/>
 				<InputModel
+					data-test="registry-name-input"
 					value={description}
 					setValue={setDescription}
 					placeholder="Descrição"
 				/>
-				<ButtonModel type="submit" text="Salvar saída" />
+				<ButtonModel
+					data-test="registry-save"
+					type="submit"
+					text="Salvar saída"
+				/>
 			</form>
 		</Page>
 	);

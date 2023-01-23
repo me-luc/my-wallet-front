@@ -48,19 +48,25 @@ export default function HomePage() {
 			<Authenticate />
 			<ResponseMessage show={false} />
 			<TopSection>
-				<PageTitle text={`Olá, ${name}`} />
-				<LogoutIcon onClick={handleSignOutClick} className="icon" />
+				<PageTitle data-test="user-name" text={`Olá, ${name}`} />
+				<LogoutIcon
+					data-test="logout"
+					onClick={handleSignOutClick}
+					className="icon"
+				/>
 			</TopSection>
 
 			<Entry entries={entries} />
 
 			<Options>
 				<EntryButton
+					data-test="new-income"
 					title="Nova entrada"
 					Icon={PlusIcon}
 					link="/nova-entrada"
 				/>
 				<EntryButton
+					data-test="new-expense"
 					title="Nova saída"
 					Icon={MinusIcon}
 					link="/nova-saida"

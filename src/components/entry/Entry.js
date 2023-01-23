@@ -23,7 +23,7 @@ export default function Entry({ entries }) {
 
 				<TotalSection>
 					<Balance>SALDO</Balance>
-					<Price>{getUserTotal()}</Price>
+					<Price data-test="total-amount">{getUserTotal()}</Price>
 				</TotalSection>
 			</div>
 		</StyledSection>

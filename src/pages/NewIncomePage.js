@@ -17,16 +17,22 @@ export default function NewIncomePage() {
 
 			<form onSubmit={handleClick}>
 				<InputModel
+					data-test="registry-amount-input"
 					value={value}
 					setValue={setValue}
 					placeholder="Valor"
 				/>
 				<InputModel
+					data-test="registry-name-input"
 					value={description}
 					setValue={setDescription}
 					placeholder="Descrição"
 				/>
-				<ButtonModel type="submit" text="Salvar entrada" />
+				<ButtonModel
+					data-test="registry-save"
+					type="submit"
+					text="Salvar entrada"
+				/>
 			</form>
 		</Page>
 	);
